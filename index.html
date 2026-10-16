@@ -98,11 +98,10 @@ section { padding: 64px 0; }
 /* Materials cards */
 .cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-.card-img { position: relative; height: 170px; overflow: hidden; }
-.card-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(var(--z, 1.6)); transform-origin: var(--o, 50% 50%); }
-.card-icon { position: absolute; left: 12px; top: 12px; width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
-.card-icon svg { width: 18px; height: 18px; }
-.card-body { padding: 18px 18px 20px; }
+.card { flex-direction: row; align-items: flex-start; gap: 16px; padding: 20px; }
+.card-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--green-soft); color: var(--green); display: grid; place-items: center; flex: none; }
+.card-icon svg { width: 26px; height: 26px; }
+.card-body { padding: 0; }
 .card-body p { color: var(--muted); font-size: 14px; margin: 6px 0 0; }
 
 /* Facts strip */
@@ -131,15 +130,17 @@ section { padding: 64px 0; }
 .shot-body p { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
 
 /* Lightbox */
-.lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(20,26,15,.92); display: none; align-items: center; justify-content: center; padding: 20px; }
+.lightbox { position: fixed; inset: 0; margin: 0; z-index: 100; background: #11160d; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 64px 12px 24px; overscroll-behavior: contain; touch-action: pan-y; }
 .lightbox.open { display: flex; }
-.lightbox img { max-height: 82vh; border-radius: 8px; }
-.lightbox figcaption { color: #fff; text-align: center; margin-top: 12px; font-size: 14px; }
-.lb-btn { position: absolute; background: rgba(255,255,255,.12); color: #fff; border: 0; width: 46px; height: 46px; border-radius: 50%; font-size: 22px; cursor: pointer; display: grid; place-items: center; }
-.lb-btn:hover { background: rgba(255,255,255,.25); }
-.lb-close { top: 16px; right: 16px; }
-.lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
-.lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+.lb-stage { width: 100%; max-width: 1100px; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 6px; user-select: none; -webkit-user-drag: none; }
+.lb-bar { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 16px; color: #fff; }
+.lightbox figcaption { color: #fff; text-align: center; font-size: 15px; font-weight: 600; min-width: 160px; }
+.lb-count { display: block; font-size: 12px; font-weight: 400; color: #b9c9a6; margin-top: 2px; }
+.lb-btn { background: rgba(255,255,255,.14); color: #fff; border: 0; width: 46px; height: 46px; border-radius: 50%; font-size: 26px; line-height: 1; cursor: pointer; display: grid; place-items: center; flex: none; }
+.lb-btn:hover { background: rgba(255,255,255,.28); }
+.lb-close { position: absolute; top: 12px; right: 12px; }
+html.lb-lock, html.lb-lock body { overflow: hidden; }
 
 /* Details */
 .details { background: var(--paper); }
@@ -360,27 +361,27 @@ section { padding: 64px 0; }
       </div>
       <div class="cards">
         <article class="card">
-          <div class="card-img"><img src="images/hall.jpg" alt="" loading="lazy" style="--o:95% 40%;--z:2"><span class="card-icon"><svg><use href="#i-brick"/></svg></span></div>
+          <span class="card-icon"><svg><use href="#i-brick"/></svg></span>
           <div class="card-body"><h3>Exposed brick</h3><p>Wire-cut brick walls with no paint or plaster to maintain &mdash; naturally cool all year.</p></div>
         </article>
         <article class="card">
-          <div class="card-img"><img src="images/front.jpg" alt="" loading="lazy" style="--o:22% 48%;--z:2.6"><span class="card-icon"><svg><use href="#i-wind"/></svg></span></div>
+          <span class="card-icon"><svg><use href="#i-wind"/></svg></span>
           <div class="card-body"><h3>Jali ventilation</h3><p>Perforated brick screens let in daylight and cross-breeze, but keep the heat out.</p></div>
         </article>
         <article class="card">
-          <div class="card-img"><img src="images/hall.jpg" alt="" loading="lazy" style="--o:25% 0%;--z:1.9"><span class="card-icon"><svg><use href="#i-sun"/></svg></span></div>
+          <span class="card-icon"><svg><use href="#i-sun"/></svg></span>
           <div class="card-body"><h3>Filler-slab ceilings</h3><p>Clay tiles set into the slab &mdash; a Baker signature that keeps rooms cooler with less concrete.</p></div>
         </article>
         <article class="card">
-          <div class="card-img"><img src="images/aerial.jpg" alt="" loading="lazy" style="--o:55% 75%;--z:1.8"><span class="card-icon"><svg><use href="#i-roof"/></svg></span></div>
+          <span class="card-icon"><svg><use href="#i-roof"/></svg></span>
           <div class="card-body"><h3>Mangalore tiles</h3><p>Clay-tiled verandah roofs shade the ground floor and shed the monsoon rain.</p></div>
         </article>
         <article class="card">
-          <div class="card-img"><img src="images/rear.jpg" alt="" loading="lazy" style="--o:55% 65%;--z:1.4"><span class="card-icon"><svg><use href="#i-field"/></svg></span></div>
+          <span class="card-icon"><svg><use href="#i-field"/></svg></span>
           <div class="card-body"><h3>Rooftop terrace</h3><p>Brick-paved terrace with open views over the green paddy fields behind the house.</p></div>
         </article>
         <article class="card">
-          <div class="card-img"><img src="images/front.jpg" alt="" loading="lazy" style="--o:20% 85%;--z:2.2"><span class="card-icon"><svg><use href="#i-car"/></svg></span></div>
+          <span class="card-icon"><svg><use href="#i-car"/></svg></span>
           <div class="card-body"><h3>Covered parking</h3><p>Tiled carport for a car and a bike, behind laser-cut designer metal gates.</p></div>
         </article>
       </div>
@@ -529,16 +530,19 @@ section { padding: 64px 0; }
 
 <figure class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="lb-btn lb-close" aria-label="Close">&times;</button>
-  <button class="lb-btn lb-prev" aria-label="Previous photo">&#8249;</button>
-  <div><img alt=""><figcaption></figcaption></div>
-  <button class="lb-btn lb-next" aria-label="Next photo">&#8250;</button>
+  <div class="lb-stage"><img alt=""></div>
+  <div class="lb-bar">
+    <button class="lb-btn lb-prev" aria-label="Previous photo">&#8249;</button>
+    <figcaption><span class="lb-cap"></span><span class="lb-count"></span></figcaption>
+    <button class="lb-btn lb-next" aria-label="Next photo">&#8250;</button>
+  </div>
 </figure>
 
 <script>
 (function () {
   var shots = [].slice.call(document.querySelectorAll('.shot'));
   var lb = document.getElementById('lightbox');
-  var img = lb.querySelector('img'), cap = lb.querySelector('figcaption');
+  var img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap'), count = lb.querySelector('.lb-count');
   var cur = 0;
   function show(i) {
     cur = (i + shots.length) % shots.length;
@@ -546,15 +550,40 @@ section { padding: 64px 0; }
     img.src = s.querySelector('img').src;
     img.alt = s.querySelector('img').alt;
     cap.textContent = s.querySelector('h3').textContent;
+    count.textContent = (cur + 1) + ' of ' + shots.length;
   }
-  shots.forEach(function (s, i) { s.addEventListener('click', function () { show(i); lb.classList.add('open'); }); });
-  lb.querySelector('.lb-close').onclick = function () { lb.classList.remove('open'); };
+  var savedY = 0, body = document.body;
+  function open(i) {
+    show(i);
+    savedY = window.scrollY;
+    document.documentElement.classList.add('lb-lock');
+    body.style.position = 'fixed'; body.style.top = -savedY + 'px'; body.style.left = '0'; body.style.right = '0';
+    lb.classList.add('open');
+  }
+  function close() {
+    lb.classList.remove('open');
+    document.documentElement.classList.remove('lb-lock');
+    body.style.position = body.style.top = body.style.left = body.style.right = '';
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, savedY);
+    document.documentElement.style.scrollBehavior = '';
+  }
+  shots.forEach(function (s, i) { s.addEventListener('click', function () { open(i); }); });
+  lb.querySelector('.lb-close').onclick = close;
   lb.querySelector('.lb-prev').onclick = function () { show(cur - 1); };
   lb.querySelector('.lb-next').onclick = function () { show(cur + 1); };
-  lb.addEventListener('click', function (e) { if (e.target === lb) lb.classList.remove('open'); });
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lb-stage')) close(); });
+  lb.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+  var x0 = null;
+  lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1));
+  });
   document.addEventListener('keydown', function (e) {
     if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') lb.classList.remove('open');
+    if (e.key === 'Escape') close();
     if (e.key === 'ArrowLeft') show(cur - 1);
     if (e.key === 'ArrowRight') show(cur + 1);
   });
