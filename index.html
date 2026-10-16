@@ -160,13 +160,31 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
 
 /* Location */
 .location { background: var(--cream); }
-.places { display: grid; gap: 16px; }
-.place { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
-.place-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.place-dist { font-size: 13px; font-weight: 600; color: var(--green); background: var(--green-soft); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
-.place p { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
-.place a { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--green); display: inline-flex; align-items: center; gap: 6px; }
-.place a:hover { text-decoration: underline; }
+.loc-grid { display: grid; gap: 18px; }
+.places { display: grid; gap: 10px; align-content: start; }
+.place { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; font: inherit; color: inherit; background: var(--paper); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 14px 16px; cursor: pointer; transition: border-color .2s, box-shadow .2s, background .2s; }
+.place:hover { border-color: #c9d3bb; }
+.place.on { border-color: var(--green); background: #fbfcf8; box-shadow: 0 0 0 3px rgba(79,107,53,.12); }
+.place-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--green-soft); color: var(--green); display: grid; place-items: center; flex: none; transition: background .2s, color .2s; }
+.place-icon svg { width: 21px; height: 21px; }
+.place.on .place-icon { background: var(--green); color: #fff; }
+.place-text { flex: 1; min-width: 0; }
+.place-text h3 { font-size: 16px; }
+.place-text p { color: var(--muted); font-size: 13px; margin: 2px 0 0; line-height: 1.4; }
+.place-dist { font-size: 13px; font-weight: 600; color: var(--green-dark); background: var(--green-soft); padding: 5px 10px; border-radius: 999px; white-space: nowrap; flex: none; }
+.place.on .place-dist { background: var(--brick); color: #fff; }
+.map-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+.map-head { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.route { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; min-width: 0; flex-wrap: wrap; }
+.route .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex: none; }
+.route .dot.to { background: var(--brick); }
+.route svg { width: 16px; height: 16px; color: var(--muted); flex: none; }
+.route-meta { font-size: 13px; font-weight: 500; color: var(--muted); }
+.map-open { font-size: 13px; font-weight: 600; color: var(--green); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.map-open svg { width: 15px; height: 15px; }
+.map-open:hover { text-decoration: underline; }
+.map-frame { position: relative; height: 340px; background: var(--green-soft); }
+.map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 18px; }
 
 /* Visit band */
@@ -209,7 +227,6 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
 @media (min-width: 640px) {
   .cards { grid-template-columns: 1fr 1fr; }
   .shots { grid-template-columns: 1fr 1fr; }
-  .places { grid-template-columns: 1fr 1fr; }
   .facts-grid { grid-template-columns: repeat(4, 1fr); }
   .fact + .fact { border-left: 1px solid rgba(79,107,53,.2); }
   .contact-grid { grid-template-columns: 1fr 1fr; }
@@ -236,7 +253,8 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
   .shots .shot:nth-child(4), .shots .shot:nth-child(5) { grid-column: span 1; }
   .details-grid { grid-template-columns: 1.5fr 1fr; gap: 40px; }
   .price-card { position: sticky; top: 92px; }
-  .places { grid-template-columns: repeat(3, 1fr); }
+  .loc-grid { grid-template-columns: 380px 1fr; gap: 24px; align-items: stretch; }
+  .map-frame { height: auto; flex: 1; min-height: 440px; }
   .visit-box { grid-template-columns: 1.1fr 1fr; }
   .visit-text { padding: 48px 44px; align-self: center; }
   .visit-text h2 { font-size: 36px; }
@@ -274,6 +292,8 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
     <symbol id="i-phone" viewBox="0 0 24 24"><path class="leaf" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect class="leaf" x="3" y="5" width="18" height="14" rx="2"/><path class="leaf" d="m3 7 9 6 9-6"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path class="leaf" d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle class="leaf" cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 24 24"><rect class="leaf" x="5" y="3" width="14" height="15" rx="2.5"/><path class="leaf" d="M5 11h14M8 18v2.5M16 18v2.5"/><circle class="leaf" cx="8.5" cy="14.5" r=".8"/><circle class="leaf" cx="15.5" cy="14.5" r=".8"/></symbol>
+    <symbol id="i-road" viewBox="0 0 24 24"><path class="leaf" d="M8 3 4 21M16 3l4 18M12 4v3M12 10.5v3M12 17v3"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path class="leaf" d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></symbol>
   </defs>
@@ -445,24 +465,38 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
         <h2>Getting around Ambasamudram</h2>
         <p>On the banks of the Thamirabarani at the foot of the Western Ghats &mdash; a quiet residential street with open paddy fields behind. Exact address shared on enquiry.</p>
       </div>
-      <div class="places">
-        <div class="place">
-          <div class="place-top"><h3>Ambai Bus Stand</h3><span class="place-dist">&asymp; 2 km &middot; 5 min</span></div>
-          <p>A short ride through town.</p>
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Ambasamudram+Bus+Stand" target="_blank" rel="noopener">Open in Google Maps <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
+      <div class="loc-grid">
+        <div class="places" role="tablist" aria-label="Nearby places">
+          <button class="place on" role="tab" aria-selected="true" data-dest="Ambasamudram Bus Stand" data-name="Ambai Bus Stand" data-dist="&asymp; 2 km &middot; 5 min">
+            <span class="place-icon"><svg><use href="#i-bus"/></svg></span>
+            <span class="place-text"><h3>Ambai Bus Stand</h3><p>A short ride through town.</p></span>
+            <span class="place-dist">&asymp; 2 km</span>
+          </button>
+          <button class="place" role="tab" aria-selected="false" data-dest="Kallidaikurichi Bus Stand" data-name="Kallidaikurichi Bus Stand" data-dist="&asymp; 4 km &middot; 10 min">
+            <span class="place-icon"><svg><use href="#i-bus"/></svg></span>
+            <span class="place-text"><h3>Kallidaikurichi Bus Stand</h3><p>Across the Thamirabarani bridge.</p></span>
+            <span class="place-dist">&asymp; 4 km</span>
+          </button>
+          <button class="place" role="tab" aria-selected="false" data-dest="Tirunelveli Bypass, Tirunelveli" data-name="Tirunelveli Bypass" data-dist="&asymp; 30 km &middot; 40 min">
+            <span class="place-icon"><svg><use href="#i-road"/></svg></span>
+            <span class="place-text"><h3>Tirunelveli Bypass</h3><p>For the city, rail and highway.</p></span>
+            <span class="place-dist">&asymp; 30 km</span>
+          </button>
         </div>
-        <div class="place">
-          <div class="place-top"><h3>Kallidaikurichi Bus Stand</h3><span class="place-dist">&asymp; 4 km &middot; 10 min</span></div>
-          <p>Across the Thamirabarani bridge.</p>
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Kallidaikurichi+Bus+Stand" target="_blank" rel="noopener">Open in Google Maps <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="place">
-          <div class="place-top"><h3>Tirunelveli Bypass</h3><span class="place-dist">&asymp; 30 km &middot; 40 min</span></div>
-          <p>For the city, rail and highway.</p>
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Tirunelveli+Bypass" target="_blank" rel="noopener">Open in Google Maps <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
+        <div class="map-card">
+          <div class="map-head">
+            <div class="route">
+              <span class="dot"></span>Home
+              <svg><use href="#i-arrow"/></svg>
+              <span class="dot to"></span><span id="route-to">Ambai Bus Stand</span>
+              <span class="route-meta" id="route-meta">&asymp; 2 km &middot; 5 min</span>
+            </div>
+            <a class="map-open" id="map-open" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Google Maps <svg><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="map-frame"><iframe id="mapframe" title="Route from the house" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>
         </div>
       </div>
-      <p class="note">Distances are approximate &mdash; confirm the route on Google Maps.</p>
+      <p class="note">Tap a place to see the route. Distances are approximate &mdash; confirm on Google Maps.</p>
     </div>
   </section>
 
@@ -587,6 +621,22 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
     if (e.key === 'ArrowLeft') show(cur - 1);
     if (e.key === 'ArrowRight') show(cur + 1);
   });
+  // Map: route from the house to the chosen place.
+  // To start routes at the exact house, set ORIGIN to "lat,long" copied from Google Maps.
+  var ORIGIN = 'Ambasamudram, Tirunelveli, Tamil Nadu';
+  var places = [].slice.call(document.querySelectorAll('.place'));
+  var frame = document.getElementById('mapframe');
+  function pickPlace(i) {
+    var p = places[i];
+    places.forEach(function (q, j) { q.classList.toggle('on', j === i); q.setAttribute('aria-selected', j === i); });
+    document.getElementById('route-to').textContent = p.dataset.name;
+    document.getElementById('route-meta').textContent = p.dataset.dist;
+    document.getElementById('map-open').href = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(ORIGIN) + '&destination=' + encodeURIComponent(p.dataset.dest);
+    frame.src = 'https://maps.google.com/maps?saddr=' + encodeURIComponent(ORIGIN) + '&daddr=' + encodeURIComponent(p.dataset.dest) + '&output=embed';
+  }
+  places.forEach(function (p, i) { p.addEventListener('click', function () { pickPlace(i); }); });
+  pickPlace(0);
+
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
 </script>
