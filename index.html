@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Brick House &mdash; For Sale in Ambasamudram</title>
-<meta name="description" content="Laurie Baker style natural house for sale in Ambasamudram, Tirunelveli. 2 BHK, 1,300 sq ft, built 2025. &#8377;95 Lakhs.">
+<meta name="description" content="Laurie Baker style natural house for sale in Ambasamudram, Tirunelveli. 2 BHK, 1,300 sq ft, built 2025. Contact for price.">
 <meta property="og:title" content="The Brick House &mdash; For Sale in Ambasamudram">
-<meta property="og:description" content="Laurie Baker style natural brick house. 2 BHK, 1,300 sq ft, built 2025. &#8377;95 Lakhs.">
+<meta property="og:description" content="Laurie Baker style natural brick house. 2 BHK, 1,300 sq ft, built 2025. Contact for price.">
 <meta property="og:image" content="https://brickhouseambai.life/images/front.jpg">
 <meta property="og:url" content="https://brickhouseambai.life/">
 <meta name="theme-color" content="#4f6b35">
@@ -66,9 +66,9 @@ h3 { font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing
 
 /* Hero — the house comes first */
 .hero { position: relative; background: var(--paper); }
-.hero-photo { position: relative; height: 62vh; min-height: 300px; max-height: 560px; overflow: hidden; }
+.hero-photo { position: relative; aspect-ratio: 1200 / 690; overflow: hidden; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 24% 50%; }
-.hero-badge { position: absolute; left: 16px; bottom: 16px; background: var(--brick); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+.hero-badge { display: inline-block; position: absolute; left: 10px; top: 10px; background: var(--brick); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 6px 11px; border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
 .hero-text { padding: 28px 20px 36px; }
 .hero h1 { font-size: 40px; color: var(--ink); margin: 12px 0 14px; }
 .hero h1 em { font-style: normal; color: var(--green); }
@@ -150,6 +150,9 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
 .spec tr:last-child th, .spec tr:last-child td { border-bottom: 0; }
 .spec th { width: 42%; font-weight: 500; color: var(--muted); background: var(--cream); }
 .spec td { font-weight: 600; }
+.price-link { color: var(--green); }
+.price-link:hover { text-decoration: underline; }
+[id] { scroll-margin-top: 80px; }
 .price-card { background: var(--green); color: #fff; border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
 .price-card .eyebrow { color: #d6e2c6; }
 .price-card .price { font-family: var(--serif); font-size: 48px; line-height: 1; margin: 12px 0 8px; }
@@ -238,10 +241,10 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
   .header-cta .long { display: inline; }
   .header-cta .short { display: none; }
   .hero { display: grid; grid-template-columns: 44% 56%; min-height: 580px; overflow: hidden; }
-  .hero-photo { order: 2; height: auto; max-height: none; min-height: 580px; }
+  .hero-photo { order: 2; height: auto; aspect-ratio: auto; min-height: 580px; }
   .hero-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,.55) 9%, rgba(255,255,255,0) 26%); }
   .hero-photo img { position: absolute; inset: 0; object-position: 100% 50%; }
-  .hero-badge { left: auto; right: 22px; bottom: 22px; z-index: 2; }
+  .hero-badge { left: auto; top: auto; right: 22px; bottom: 22px; z-index: 2; font-size: 13px; padding: 8px 14px; }
   .hero-text { order: 1; padding: 64px 32px 48px max(20px, calc((100vw - 1200px) / 2 + 20px)); align-self: center; }
   .hero h1 { font-size: 58px; }
   .hero-lead { font-size: 17px; }
@@ -321,7 +324,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
   <section class="hero" style="padding:0" aria-label="The Brick House">
     <div class="hero-photo">
       <img src="images/front.jpg" alt="The Brick House, front elevation with Mangalore-tiled porch and exposed brick walls" fetchpriority="high">
-      <div class="hero-badge">For sale &middot; &#8377;95 Lakhs</div>
+      <a class="hero-badge" href="#price">For sale &middot; Check price</a>
     </div>
     <div class="hero-text">
       <span class="eyebrow"><svg><use href="#i-leaf"/></svg>Laurie Baker style &middot; Ambasamudram</span>
@@ -436,7 +439,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
         </div>
         <table class="spec">
           <tr><th>Location</th><td>Ambasamudram, Tirunelveli, Tamil Nadu</td></tr>
-          <tr><th>Asking price</th><td>&#8377;95 Lakhs</td></tr>
+          <tr><th>Price</th><td><a class="price-link" href="#price">Check price &rarr;</a></td></tr>
           <tr><th>Configuration</th><td>2 BHK &middot; 3 bathrooms</td></tr>
           <tr><th>Built-up area</th><td>1,300 sq ft</td></tr>
           <tr><th>Plot area</th><td>1,600 sq ft</td></tr>
@@ -446,12 +449,12 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
           <tr><th>Parking</th><td>Covered carport &mdash; car + bike</td></tr>
         </table>
       </div>
-      <aside class="price-card">
-        <span class="eyebrow"><svg><use href="#i-leaf"/></svg>Asking price</span>
-        <div class="price">&#8377;95 Lakhs</div>
-        <p>Ready to move in. Happy to share more photos or arrange a visit.</p>
+      <aside class="price-card" id="price">
+        <span class="eyebrow"><svg><use href="#i-leaf"/></svg>Price</span>
+        <div class="price">On request</div>
+        <p>Ready to move in. Message us on WhatsApp or call to check the price and arrange a visit.</p>
         <a class="btn btn-white" href="tel:+918754487727"><svg><use href="#i-phone"/></svg>Call +91 87544 87727</a>
-        <a class="btn btn-ghost" href="https://wa.me/918754487727" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="btn btn-ghost" href="https://wa.me/918754487727?text=Hi%2C%20I%27d%20like%20to%20know%20the%20price%20of%20The%20Brick%20House%20in%20Ambasamudram." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Check price on WhatsApp</a>
       </aside>
     </div>
   </section>
