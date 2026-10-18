@@ -66,8 +66,8 @@ h3 { font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing
 
 /* Hero — the house comes first */
 .hero { position: relative; background: var(--paper); }
-.hero-photo { position: relative; aspect-ratio: 1200 / 690; overflow: hidden; }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 24% 50%; }
+.hero-photo { position: relative; aspect-ratio: 1600 / 1079; overflow: hidden; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .hero-badge { display: inline-block; background: var(--brick); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; margin-bottom: 14px; }
 .hero-badge:hover { background: #9a4626; }
 .hero-text { padding: 22px 20px 36px; }
@@ -142,6 +142,23 @@ section { padding: 64px 0; }
 .lb-btn:hover { background: rgba(255,255,255,.28); }
 .lb-close { position: absolute; top: 12px; right: 12px; }
 html.lb-lock, html.lb-lock body { overflow: hidden; }
+
+/* Videos */
+.videos { background: var(--paper); }
+.vids { display: grid; gap: 20px; }
+.vid { background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.vid-frame { position: relative; aspect-ratio: 16/9; background: #11160d; }
+.vid-frame iframe, .vid-play { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vid-play { padding: 0; cursor: pointer; background: #11160d; }
+.vid-play img { width: 100%; height: 100%; object-fit: cover; opacity: .9; transition: opacity .2s; }
+.vid-play:hover img { opacity: 1; }
+.vid-btn { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: rgba(79,107,53,.92); color: #fff; display: grid; place-items: center; box-shadow: 0 6px 24px rgba(0,0,0,.35); transition: transform .2s, background .2s; }
+.vid-btn svg { width: 28px; height: 28px; margin-left: 4px; }
+.vid-play:hover .vid-btn { transform: translate(-50%, -50%) scale(1.08); background: var(--green); }
+.vid-body { padding: 16px 18px 18px; }
+.vid-body h3 { font-size: 17px; }
+.vid-body p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+.vid-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--brick); margin-bottom: 4px; }
 
 /* Details */
 .details { background: var(--paper); }
@@ -244,7 +261,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
   .hero { display: grid; grid-template-columns: 44% 56%; min-height: 580px; overflow: hidden; }
   .hero-photo { order: 2; height: auto; aspect-ratio: auto; min-height: 580px; }
   .hero-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,.55) 9%, rgba(255,255,255,0) 26%); }
-  .hero-photo img { position: absolute; inset: 0; object-position: 100% 50%; }
+  .hero-photo img { position: absolute; inset: 0; object-position: 50% 50%; }
   .hero-text { order: 1; padding: 64px 32px 48px max(20px, calc((100vw - 1200px) / 2 + 20px)); align-self: center; }
   .hero h1 { font-size: 58px; }
   .hero-lead { font-size: 17px; }
@@ -252,8 +269,8 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
   .section-head h2, .about h2, .gallery-top h2 { font-size: 38px; }
   .about-grid { grid-template-columns: 1.1fr 1fr; gap: 56px; }
   .cards { grid-template-columns: repeat(3, 1fr); }
-  .shots { grid-template-columns: repeat(3, 1fr); }
-  .shots .shot:nth-child(4), .shots .shot:nth-child(5) { grid-column: span 1; }
+  .shots { grid-template-columns: repeat(2, 1fr); }
+  .vids { grid-template-columns: 1fr 1fr; gap: 24px; }
   .details-grid { grid-template-columns: 1.5fr 1fr; gap: 40px; }
   .price-card { position: sticky; top: 92px; }
   .loc-grid { grid-template-columns: 380px 1fr; gap: 24px; align-items: stretch; }
@@ -295,6 +312,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
     <symbol id="i-phone" viewBox="0 0 24 24"><path class="leaf" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path class="leaf" d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle class="leaf" cx="12" cy="9.5" r="2.5"/></symbol>
     <symbol id="i-bus" viewBox="0 0 24 24"><rect class="leaf" x="5" y="3" width="14" height="15" rx="2.5"/><path class="leaf" d="M5 11h14M8 18v2.5M16 18v2.5"/><circle class="leaf" cx="8.5" cy="14.5" r=".8"/><circle class="leaf" cx="15.5" cy="14.5" r=".8"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></symbol>
     <symbol id="i-road" viewBox="0 0 24 24"><path class="leaf" d="M8 3 4 21M16 3l4 18M12 4v3M12 10.5v3M12 17v3"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path class="leaf" d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></symbol>
@@ -311,6 +329,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
       <a href="#house">The House</a>
       <a href="#materials">Materials</a>
       <a href="#gallery">Photos</a>
+      <a href="#videos">Videos</a>
       <a href="#details">Details</a>
       <a href="#location">Location</a>
     </nav>
@@ -323,7 +342,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
   <!-- Hero: the house first -->
   <section class="hero" style="padding:0" aria-label="The Brick House">
     <div class="hero-photo">
-      <img src="images/front.jpg" alt="The Brick House, front elevation with Mangalore-tiled porch and exposed brick walls" fetchpriority="high">
+      <img src="images/front.jpg" alt="The Brick House from above: Mangalore-tiled verandahs, exposed brick and jali walls" fetchpriority="high">
     </div>
     <div class="hero-text">
       <a class="hero-badge" href="#price">For sale &middot; Check price</a><br>
@@ -416,15 +435,45 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
       <div class="gallery-top">
         <div>
           <span class="eyebrow"><svg><use href="#i-leaf"/></svg>Walk around</span>
-          <h2>Five views of the house</h2>
+          <h2>Four views of the house</h2>
         </div>
       </div>
       <div class="shots">
-        <button class="shot" data-i="0"><div class="shot-img"><img src="images/front.jpg" alt="Front elevation" loading="lazy"></div><div class="shot-body"><h3>The front elevation</h3><p>East-facing, with the jali balcony above and the tiled porch over the entrance steps.</p></div></button>
+        <button class="shot" data-i="0"><div class="shot-img"><img src="images/front.jpg" alt="The house from the street side" loading="lazy"></div><div class="shot-body"><h3>From the street</h3><p>The tiled carport and verandah, jali walls along the stair, and laser-cut metal gates.</p></div></button>
         <button class="shot" data-i="1"><div class="shot-img"><img src="images/aerial.jpg" alt="Aerial view" loading="lazy"></div><div class="shot-body"><h3>From above</h3><p>Tiled verandah roofs wrap the ground floor; the brick-paved terrace sits behind the parapet.</p></div></button>
-        <button class="shot" data-i="2"><div class="shot-img"><img src="images/side.jpg" alt="Side approach" loading="lazy"></div><div class="shot-body"><h3>The side approach</h3><p>Jali screens along the stair, and the covered carport behind laser-cut metal gates.</p></div></button>
-        <button class="shot" data-i="3"><div class="shot-img"><img src="images/rear.jpg" alt="Rear view" loading="lazy"></div><div class="shot-body"><h3>The rear</h3><p>Rooftop terraces look straight over open paddy fields &mdash; green in season, quiet all year.</p></div></button>
-        <button class="shot" data-i="4"><div class="shot-img"><img src="images/hall.jpg" alt="Inside the hall" loading="lazy"></div><div class="shot-body"><h3>Inside the hall</h3><p>Exposed brick walls, a filler-slab ceiling with clay-tile inlays, and a stone-clad window wall.</p></div></button>
+        <button class="shot" data-i="2"><div class="shot-img"><img src="images/rear.jpg" alt="Rear view" loading="lazy"></div><div class="shot-body"><h3>The rear</h3><p>Rooftop terraces look straight over open paddy fields &mdash; green in season, quiet all year.</p></div></button>
+        <button class="shot" data-i="3"><div class="shot-img"><img src="images/hall.jpg" alt="Inside the hall" loading="lazy"></div><div class="shot-body"><h3>Inside the hall</h3><p>Exposed brick walls, a filler-slab ceiling with clay-tile inlays, and a stone-clad window wall.</p></div></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section class="videos" id="videos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><svg><use href="#i-leaf"/></svg>Watch</span>
+        <h2>See the house on video</h2>
+        <p>Tap a video to play it here.</p>
+      </div>
+      <div class="vids">
+        <article class="vid">
+          <div class="vid-frame">
+            <button class="vid-play" data-yt="WHcKw2G3Q-g" aria-label="Play the house tour video">
+              <img src="https://i.ytimg.com/vi/WHcKw2G3Q-g/maxresdefault.jpg" alt="" loading="lazy">
+              <span class="vid-btn"><svg><use href="#i-play"/></svg></span>
+            </button>
+          </div>
+          <div class="vid-body"><span class="vid-tag">Featured</span><h3>The house tour</h3><p>Walk through the finished Brick House, inside and out.</p></div>
+        </article>
+        <article class="vid">
+          <div class="vid-frame">
+            <button class="vid-play" data-yt="NMepIhcpFf8" aria-label="Play the construction journey video">
+              <img src="https://i.ytimg.com/vi/NMepIhcpFf8/maxresdefault.jpg" alt="" loading="lazy">
+              <span class="vid-btn"><svg><use href="#i-play"/></svg></span>
+            </button>
+          </div>
+          <div class="vid-body"><span class="vid-tag">Behind the build</span><h3>The construction journey</h3><p>How the brick walls, jali screens and tiled roofs went up, stage by stage.</p></div>
+        </article>
       </div>
     </div>
   </section>
@@ -465,40 +514,50 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
       <div class="section-head">
         <span class="eyebrow"><svg><use href="#i-leaf"/></svg>Location</span>
         <h2>Getting around Ambasamudram</h2>
-        <p>On the banks of the Thamirabarani at the foot of the Western Ghats &mdash; a quiet residential street with open paddy fields behind. Exact address shared on enquiry.</p>
+        <p>On the banks of the Thamirabarani at the foot of the Western Ghats &mdash; a quiet residential street with open paddy fields behind.</p>
       </div>
       <div class="loc-grid">
         <div class="places" role="tablist" aria-label="Nearby places">
-          <button class="place on" role="tab" aria-selected="true" data-dest="Ambasamudram Bus Stand" data-name="Ambai Bus Stand" data-dist="&asymp; 2 km &middot; 5 min">
-            <span class="place-icon"><svg><use href="#i-bus"/></svg></span>
-            <span class="place-text"><h3>Ambai Bus Stand</h3><p>A short ride through town.</p></span>
-            <span class="place-dist">&asymp; 2 km</span>
+          <button class="place on" role="tab" aria-selected="true" data-dest="" data-name="The Brick House" data-dist="52B, Ambasamudram 627401">
+            <span class="place-icon"><svg><use href="#i-house"/></svg></span>
+            <span class="place-text"><h3>The house</h3><p>52B, Ambasamudram, Tamil Nadu 627401.</p></span>
+            <span class="place-dist">Home</span>
           </button>
-          <button class="place" role="tab" aria-selected="false" data-dest="Kallidaikurichi Bus Stand" data-name="Kallidaikurichi Bus Stand" data-dist="&asymp; 4 km &middot; 10 min">
+          <button class="place" role="tab" aria-selected="false" data-dest="8.7044669,77.4589138" data-name="Ambai Bus Stand" data-dist="&asymp; 850 m &middot; 3 min drive">
             <span class="place-icon"><svg><use href="#i-bus"/></svg></span>
-            <span class="place-text"><h3>Kallidaikurichi Bus Stand</h3><p>Across the Thamirabarani bridge.</p></span>
-            <span class="place-dist">&asymp; 4 km</span>
+            <span class="place-text"><h3>Ambai Bus Stand</h3><p>A short walk or ride through town.</p></span>
+            <span class="place-dist">&asymp; 850 m</span>
           </button>
-          <button class="place" role="tab" aria-selected="false" data-dest="Tirunelveli Bypass, Tirunelveli" data-name="Tirunelveli Bypass" data-dist="&asymp; 30 km &middot; 40 min">
+          <button class="place" role="tab" aria-selected="false" data-dest="8.680522,77.4702594" data-name="Kallidaikurichi New Bus Stand" data-dist="&asymp; 3.1 km &middot; 8 min drive">
+            <span class="place-icon"><svg><use href="#i-bus"/></svg></span>
+            <span class="place-text"><h3>Kallidaikurichi New Bus Stand</h3><p>A short drive along the Shencottai road.</p></span>
+            <span class="place-dist">&asymp; 3.1 km</span>
+          </button>
+          <button class="place" role="tab" aria-selected="false" data-dest="8.702429,77.7278272" data-name="Tirunelveli New Bus Stand" data-dist="&asymp; 37.4 km &middot; 51 min drive">
+            <span class="place-icon"><svg><use href="#i-bus"/></svg></span>
+            <span class="place-text"><h3>Tirunelveli New Bus Stand</h3><p>Buses to the city and across Tamil Nadu.</p></span>
+            <span class="place-dist">&asymp; 37.4 km</span>
+          </button>
+          <button class="place" role="tab" aria-selected="false" data-dest="8.7312737,77.70829" data-name="Tirunelveli Junction" data-dist="&asymp; 38.5 km &middot; 57 min drive">
             <span class="place-icon"><svg><use href="#i-road"/></svg></span>
-            <span class="place-text"><h3>Tirunelveli Bypass</h3><p>For the city, rail and highway.</p></span>
-            <span class="place-dist">&asymp; 30 km</span>
+            <span class="place-text"><h3>Tirunelveli Junction</h3><p>Railway station for trains across Tamil Nadu.</p></span>
+            <span class="place-dist">&asymp; 38.5 km</span>
           </button>
         </div>
         <div class="map-card">
           <div class="map-head">
             <div class="route">
-              <span class="dot"></span>Home
-              <svg><use href="#i-arrow"/></svg>
-              <span class="dot to"></span><span id="route-to">Ambai Bus Stand</span>
-              <span class="route-meta" id="route-meta">&asymp; 2 km &middot; 5 min</span>
+              <span class="dot"></span><span id="route-from">Home</span>
+              <svg id="route-arrow"><use href="#i-arrow"/></svg>
+              <span class="dot to" id="route-dot"></span><span id="route-to">The Brick House</span>
+              <span class="route-meta" id="route-meta">52B, Ambasamudram 627401</span>
             </div>
             <a class="map-open" id="map-open" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Google Maps <svg><use href="#i-arrow"/></svg></a>
           </div>
           <div class="map-frame"><iframe id="mapframe" title="Route from the house" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>
         </div>
       </div>
-      <p class="note">Tap a place to see the route. Distances are approximate &mdash; confirm on Google Maps.</p>
+      <p class="note">Tap a place to see the route from the house. Distances are by road from Google Maps and approximate.</p>
     </div>
   </section>
 
@@ -515,7 +574,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
             <a class="btn btn-ghost" href="https://wa.me/918754487727" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
           </div>
         </div>
-        <div class="visit-photo"><img src="images/side.jpg" alt="" loading="lazy"></div>
+        <div class="visit-photo"><img src="images/rear.jpg" alt="" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -543,7 +602,7 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
       </div>
       <div>
         <h4>Explore</h4>
-        <ul><li><a href="#house">The House</a></li><li><a href="#materials">Materials</a></li><li><a href="#gallery">Photos</a></li><li><a href="#details">Details</a></li></ul>
+        <ul><li><a href="#house">The House</a></li><li><a href="#materials">Materials</a></li><li><a href="#gallery">Photos</a></li><li><a href="#videos">Videos</a></li><li><a href="#details">Details</a></li></ul>
       </div>
       <div>
         <h4>Visit</h4>
@@ -622,19 +681,36 @@ html.lb-lock, html.lb-lock body { overflow: hidden; }
     if (e.key === 'ArrowLeft') show(cur - 1);
     if (e.key === 'ArrowRight') show(cur + 1);
   });
-  // Map: route from the house to the chosen place.
-  // To start routes at the exact house, set ORIGIN to "lat,long" copied from Google Maps.
-  var ORIGIN = 'Ambasamudram, Tirunelveli, Tamil Nadu';
+  // Map: the house pin, or the route from the house to the chosen place.
+  var ORIGIN = '8.6997471,77.4629665'; // the house — from the owner's Google Maps pin
   var places = [].slice.call(document.querySelectorAll('.place'));
   var frame = document.getElementById('mapframe');
   function pickPlace(i) {
-    var p = places[i];
+    var p = places[i], home = !p.dataset.dest;
     places.forEach(function (q, j) { q.classList.toggle('on', j === i); q.setAttribute('aria-selected', j === i); });
+    ['route-from', 'route-arrow', 'route-dot'].forEach(function (id) { document.getElementById(id).style.display = home ? 'none' : ''; });
     document.getElementById('route-to').textContent = p.dataset.name;
     document.getElementById('route-meta').textContent = p.dataset.dist;
-    document.getElementById('map-open').href = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(ORIGIN) + '&destination=' + encodeURIComponent(p.dataset.dest);
-    frame.src = 'https://maps.google.com/maps?saddr=' + encodeURIComponent(ORIGIN) + '&daddr=' + encodeURIComponent(p.dataset.dest) + '&output=embed';
+    if (home) {
+      document.getElementById('map-open').href = 'https://www.google.com/maps/search/?api=1&query=' + ORIGIN;
+      frame.src = 'https://maps.google.com/maps?q=' + ORIGIN + '&z=16&output=embed';
+    } else {
+      document.getElementById('map-open').href = 'https://www.google.com/maps/dir/?api=1&origin=' + ORIGIN + '&destination=' + p.dataset.dest + '&travelmode=driving';
+      frame.src = 'https://maps.google.com/maps?saddr=' + ORIGIN + '&daddr=' + p.dataset.dest + '&output=embed';
+    }
   }
+
+  // Videos: load the YouTube player only when tapped.
+  [].slice.call(document.querySelectorAll('.vid-play')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
+      f.title = b.getAttribute('aria-label').replace('Play ', '');
+      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      b.replaceWith(f);
+    });
+  });
   places.forEach(function (p, i) { p.addEventListener('click', function () { pickPlace(i); }); });
   pickPlace(0);
 
